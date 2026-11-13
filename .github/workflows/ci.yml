@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "13 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+      - name: Format check (every module)
+        run: terraform -chdir=terraform/modules/secure-storage fmt -check -recursive
+      - name: Validate (every module)
+        run: |
+          cd terraform/modules/secure-storage
+          terraform init -backend=false -input=false
+          terraform validate
+
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Runbook/README staleness gate
+        run: |
+          pip install git+https://github.com/waleakomolafe/runbook-doctor
+          runbook-doctor . --root .
+
+  workflow-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Audit this repo's workflows with pipeline-sentinel
+        run: |
+          pip install git+https://github.com/waleakomolafe/pipeline-sentinel
+          pipeline-sentinel .
