@@ -3,6 +3,13 @@
 All notable changes to this repository. The repository grows in tagged
 increments; this file is the map.
 
+## v0.3.0 — 2026-11-16
+
+- `runbooks/`: the template (verification-shaped, doctor-enforced
+  structure rules) and the first worked example — restore an accidentally
+  deleted blob on a secure-storage account, written against the exact
+  failure modes the module makes recoverable.
+
 ## v0.2.0 — 2026-11-16
 
 - `pipeline/`: the regulated-deploy reusable template — approval via the

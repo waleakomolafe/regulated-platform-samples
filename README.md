@@ -18,7 +18,7 @@ that never changes proves nothing about how it is maintained.
 | `terraform/modules/secure-storage` | **v0.1** | governance carried inside the module: private-only, Entra-only auth, versioning, TLS floor, mandatory tags with validation |
 | `docs/decisions` | **v0.1** | decision records in a fixed format — the reasoning auditors and reviewers actually ask for |
 | `pipeline/` | **v0.2** | the regulated-deploy template: approval via environments, OIDC federation, change evidence as artifacts — audited by its own structural gate |
-| `runbooks/` | planned v0.3 | skeleton + worked example, validated by [runbook-doctor](https://github.com/waleakomolafe/runbook-doctor) |
+| `runbooks/` | **v0.3** | the template (verification-shaped) + a worked example — restore a deleted blob — validated by [runbook-doctor](https://github.com/waleakomolafe/runbook-doctor) |
 | `queries/` | planned v0.5 | KQL / PromQL pack, each query annotated with the control it evidences |
 
 ## The financial-services framing
