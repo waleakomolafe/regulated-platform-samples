@@ -3,6 +3,20 @@
 All notable changes to this repository. The repository grows in tagged
 increments; this file is the map.
 
+## v0.2.0 — 2026-11-16
+
+- `pipeline/`: the regulated-deploy reusable template — approval via the
+  environment's protection rules, OIDC federation to Azure (zero stored
+  cloud credentials), and change evidence produced as artifacts (the plan
+  before, the apply log after).
+- `docs/decisions/0003`: why OIDC beats a stored client secret.
+- `tools/check_pipeline_template.py`: the structural gate that audits the
+  template (OIDC permission, no stored secrets, environment gate, two
+  evidence uploads, SHA pins, no pull_request_target expressions) —
+  negative-tested: it fails on a soft pin. Its first version was blind
+  (regex over stringified YAML); the shipped version walks the parsed
+  structure.
+
 ## v0.1.0 — 2026-11-12
 
 First increment.
