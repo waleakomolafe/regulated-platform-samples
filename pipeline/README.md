@@ -20,7 +20,7 @@ beats a stored client secret in every dimension an auditor cares about.
 
 ## The gate that audits the gate
 
-`../tools/check_pipeline_template.py` runs in CI and fails the build if
+`tools/check_pipeline_template.py` (at the repository root) runs in CI and fails the build if
 the template ever regresses: OIDC permission missing, a stored cloud
 secret reintroduced, the environment gate removed, evidence uploads
 dropped, an action pin going soft, or `pull_request_target` with
