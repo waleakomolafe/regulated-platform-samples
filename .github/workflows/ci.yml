@@ -43,7 +43,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Structural gate on the deploy template
-        run: python tools/check_pipeline_template.py
+        run: |
+          pip install pyyaml
+          python tools/check_pipeline_template.py
 
   workflow-audit:
     runs-on: ubuntu-latest
